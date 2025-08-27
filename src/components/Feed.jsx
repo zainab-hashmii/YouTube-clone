@@ -12,7 +12,8 @@ const Feed = () => {
 
   useEffect(() => {
     fetchFromAPI(`search?part=snippet&q=${selectedCategory}`).then((data) => setVideos(data.items))
-  }, [selectedCategory])
+  }, [selectedCategory]);
+  
   return (
     <Stack direction={{ xs: 'column', md: 'row' }} sx={{ minHeight: '100vh' }}>
       <Box sx={{

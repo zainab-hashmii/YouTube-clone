@@ -1,10 +1,10 @@
 import React from 'react';
-import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, Card, CardContent, CardMedia, CardActionArea, Typography } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Link } from 'react-router-dom';
 import { demoProfilePicture } from '../utils/constants';
 
-const ChannelCard = ({ channelDetail }) => {
+const ChannelCard = ({ channelDetail, marginTop}) => {
   const s = channelDetail?.snippet;
   const channelId = channelDetail?.id?.channelId || channelDetail?.id;
   const avatar =
@@ -21,7 +21,9 @@ const ChannelCard = ({ channelDetail }) => {
       justifyContent: 'center',
       alignItems: 'center',
       width: { xs: '356px', md: '320px' },
-      height: '326px', margin: 'auto'
+      height: '326px',
+      margin: 'auto',
+      marginTop
     }}
     >
       <Card sx={{ background: 'transparent', boxShadow: 'none' }}>
@@ -34,20 +36,25 @@ const ChannelCard = ({ channelDetail }) => {
             color: '#fff',
           }}
         >
-          <Link to={channelId ? `/channel/${channelId}` : '#'}>
+          <CardActionArea
+            component={Link}
+            to={channelId ? `/channel/${channelId}` : '#'}
+            sx={{
+              borderRadius: '50%',
+              overflow: 'hidden',
+              width: 180,
+              height: 180,
+              mb: 2,
+              border: '1px solid #e3e3e3',
+            }}
+          >
             <CardMedia
               component="img"
               image={avatar}
               alt={s?.title || 'Channel avatar'}
-              sx={{
-                borderRadius: '50%',
-                height: 180,
-                width: 180,
-                mb: 2,
-                border: '1px solid #e3e3e3',
-              }}
+              sx={{ width: '100%', height: '100%' }}
             />
-          </Link>
+          </CardActionArea>
 
           <Typography variant="h6">
             {s?.title || 'Channel'}
